@@ -40,11 +40,7 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/products/{id}/read-through")
-    public ResponseEntity<ProductResponse> getProductReadThrough(@PathVariable Long id) {
-        ProductResponse response = productService.getById(id);
-        return ResponseEntity.ok(response);
-    }
+
 
     @PutMapping("/products/{id}/write-behind")
     public ResponseEntity<ProductResponse> updateProductWriteBehind(
