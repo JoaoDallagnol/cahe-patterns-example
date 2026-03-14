@@ -17,20 +17,6 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    @Transactional(readOnly = true)
-    public ProductResponse getById(Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException(id));
-        return toResponse(product);
-    }
-
-    @Transactional(readOnly = true)
-    public List<ProductResponse> getAll() {
-        return productRepository.findAll().stream()
-                .map(this::toResponse)
-                .toList();
-    }
-
     @Transactional
     public ProductResponse create(ProductRequest request) {
         Product product = new Product();

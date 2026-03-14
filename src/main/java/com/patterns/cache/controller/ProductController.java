@@ -20,18 +20,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/products/{id}")
-    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
-        ProductResponse response = productService.getById(id);
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping("/products")
-    public ResponseEntity<List<ProductResponse>> listProducts() {
-        List<ProductResponse> response = productService.getAll();
-        return ResponseEntity.ok(response);
-    }
-
     @PostMapping("/products")
     public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
         ProductResponse response = productService.create(request);
