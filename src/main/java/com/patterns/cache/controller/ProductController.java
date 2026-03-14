@@ -20,27 +20,11 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @PostMapping("/products")
-    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
-        ProductResponse response = productService.create(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    @PutMapping("/products/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(
-            @PathVariable Long id,
-            @Valid @RequestBody ProductRequest request) {
-        ProductResponse response = productService.update(id, request);
-        return ResponseEntity.ok(response);
-    }
-
     @DeleteMapping("/products/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-
 
     @PutMapping("/products/{id}/write-behind")
     public ResponseEntity<ProductResponse> updateProductWriteBehind(

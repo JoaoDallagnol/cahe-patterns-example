@@ -17,31 +17,6 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    @Transactional
-    public ProductResponse create(ProductRequest request) {
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setPrice(request.getPrice());
-        product.setCategory(request.getCategory());
-        product.setStock(request.getStock());
-        
-        Product saved = productRepository.save(product);
-        return toResponse(saved);
-    }
-
-    @Transactional
-    public ProductResponse update(Long id, ProductRequest request) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException(id));
-        
-        product.setName(request.getName());
-        product.setPrice(request.getPrice());
-        product.setCategory(request.getCategory());
-        product.setStock(request.getStock());
-        
-        Product updated = productRepository.save(product);
-        return toResponse(updated);
-    }
 
     @Transactional
     public void delete(Long id) {
